@@ -1,0 +1,307 @@
+/*
+freeCodeCamp 'Responsive Web Design' project
+
+Task: Create a portfolio page.
+Tests: The project has 11 requirements (user stories)
+    Include:
+    1 - A section with an id of 'welcome-section'.
+    2 - An <h1> element inside 'welcome-section'.
+    3 - A setion with an id of 'projects'.
+    4 - A minimum of one element with an id of 'project-tile' inside 'projects' section.
+    5 - A minimum of one link to a project inside the 'projects' section.
+    6 - A <nav> element with an id of 'navbar'.
+    7 - A minimum of one link to navigate the page inside the 'navbar' element.
+    8 - A minimum of one link with an id of 'profile-link' linking to GitHub / FCC.
+    9 - A minimum of one media query.
+    10 - A 'welcome-section' with a height equal to that of the viewport.
+    11 - A 'navbar' element that is always at the top of the viewport.
+
+Completion: Submit URL to working project with all tests passing.
+*/
+
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+        0.  Global Setup
+        1.  Navigation
+        2.  Welcome section
+        3.  Projects section
+            a.  Project tiles
+        4.  Footer
+----------------------------------------------------------------*/
+
+
+/*-------------------------------------------------------------
+    0. Global Setup
+---------------------------------------------------------------*/
+
+:root {
+    --dominant: #EEF0F2;
+    --complementary: #011638;
+    --accent: #00c9b7;
+
+    --top-offset: 15vh; /* to push elements below fixed navbar */
+
+    --font-df: 'Oswald', sans-serif;
+
+    /* responsive typography setup */
+    --fs-xlarge: 2.25rem;
+    --fs-large: 2rem;
+    --fs-medium: 1.75rem;
+    --fs-stand: 1.25rem;
+}
+
+/* change font size for medium and large screens */
+@media (min-width: 500px) {
+    :root {
+        --fs-xlarge: 3.25rem;
+        --fs-large: 3rem;
+        --fs-medium: 1.75rem;
+        --fs-stand: 1.75rem;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-df);
+}
+
+html {
+    scroll-behavior: smooth; /* smoother transition when clicking links */
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+
+    overflow-x: hidden;
+}
+
+/*-------------------------------------------------------------
+    1. Navigation
+---------------------------------------------------------------*/
+
+#navbar {
+    position: fixed; /* user story 11 (required) */
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+
+    margin-bottom: 2vh;
+    border-bottom: 1px solid var(--accent);
+
+    background-color: var(--dominant);
+
+    z-index: 2; /* move navbar on top of all elements (needed due to link overlay below) */
+}
+
+.nav-link {
+    width: 35%;
+
+    padding: 1.5vh 1vw;
+
+    color: var(--complementary);
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: var(--fs-stand);
+}
+
+.nav-link:hover, .active {
+    background-color: var(--accent);
+}
+
+/* user story 9 (required) */
+/* Large size navbar structure */
+@media (min-width: 500px) {
+    #navbar {
+        flex-direction: row;
+        justify-content: end;
+    }
+
+    .nav-link {
+        width: 15%;
+        text-align: center;
+
+        margin-left: 0.5vw;
+        padding: 1vw;
+    }
+}
+
+
+/*-------------------------------------------------------------
+    2. Welcome section
+---------------------------------------------------------------*/
+
+#welcome-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh; /* user story 10 (required) */
+
+    background-color: var(--complementary);
+    color: var(--dominant);
+
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: var(--fs-stand);
+}
+
+#welcome-section > h1 span {
+    text-transform: uppercase;
+}
+
+/* arrows link to projects section */
+#welcome-section > a {
+    font-size: var(--fs-xlarge);
+    color: var(--accent);
+}
+
+
+/*-------------------------------------------------------------
+    3. Projects section
+---------------------------------------------------------------*/
+
+#projects {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 85vh;
+
+    padding-top: var(--top-offset);
+    padding-bottom: 10vh;
+
+    background-color: var(--dominant);
+}
+
+#projects-header {
+    width: 95vw;
+    margin-bottom: 1vh;
+    border-bottom: 1.5px solid var(--complementary);
+
+    text-transform: uppercase;
+    font-size: var(--fs-large);
+
+    color: var(--complementary);
+
+    text-align: center;
+}
+
+.tech-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    text-align: center;
+    margin-bottom: 4vh;
+    border-top: 1px solid var(--accent);
+}
+
+.tech-bar p {
+    display: inline;
+    width: 30vw;
+    background-color: var(--accent);
+    font-size: var(--fs-stand);
+}
+
+/*---------------------------
+    a. Project tiles
+-----------------------------*/
+
+.tile-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    column-gap: 5vh;
+    row-gap: 2.5vh;
+    width: 100%;
+    padding: 0 2.5vw;
+    margin: 0 auto;
+}
+
+@media (min-width: 400px) {
+    .tile-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    
+}
+
+.project-tile {
+    height: 80vh;
+    position: relative;
+    
+    margin-bottom: 4vh;
+    border: 1px solid var(--complementary);
+}
+
+.tile-img {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+
+    border: none;
+
+    z-index: -1;
+}
+
+.tile-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 1;
+}
+
+.tile-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    border-top: 1vh solid var(--accent);
+
+    background-color: var(--complementary);
+    color: var(--dominant);
+
+    text-align: center;
+    padding: 1.25rem 1rem;
+    font-size: var(--fs-xlarge);
+    font-variant: small-caps;
+
+    z-index: 0;
+}
+
+/*-------------------------------------------------------------
+    4. Footer
+---------------------------------------------------------------*/
+
+#footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+
+    background-color: var(--complementary);
+}
+
+#profile-link {
+    font-family: 'Oswald', sans-serif;
+    text-decoration: none;
+    font-size: var(--fs-medium);
+    color: var(--accent);
+
+    transition: 0.5s;
+}
+
+#profile-link:hover {
+    transform: scale(1.25);
+}
