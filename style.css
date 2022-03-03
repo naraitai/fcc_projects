@@ -124,7 +124,9 @@ body {
     }
 
     .nav-link {
+        min-width: fit-content;
         width: 15%;
+        max-width: calc(100% / 3);
         text-align: center;
 
         margin-left: 0.5vw;
