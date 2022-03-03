@@ -176,8 +176,10 @@ body {
     justify-content: center;
     align-items: center;
 
+    width: 95vw;
     min-height: 85vh;
 
+    margin: 0 auto;
     padding-top: var(--top-offset);
     padding-bottom: 10vh;
 
